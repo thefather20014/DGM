@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DGM.Models.Estado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<style>
+    .card:hover {
+        cursor: pointer;
+        background: #f1f2f6;
+    }
+</style>
+
+<h1 class="alert alert-warning">Index</h1>
+
+<p>
+    <a class="btn btn-warning" asp-action="Create"><i class="fas fa-plus-square"></i> Create New</a>
+</p>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-4">
+            <a asp-action="Details" asp-route-id="@item.IdEstado" style="text-decoration: none; color: #000;">
+                <div class="card mb-4">
+                    <div class="card-header text-center">
+                        <p class="card-text font-weight-normal font-italic">@Html.DisplayFor(modelItem => item.FechaCreacion)</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Descripion)</h5>
+
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IdEstado"><i class="fas fa-edit"></i> Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdEstado"><i class="fas fa-trash-alt"></i> Delete</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

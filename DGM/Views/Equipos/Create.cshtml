@@ -1,0 +1,63 @@
+﻿@model DGM.Models.Equipo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="alert alert-danger">Crear Equipo</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12 card p-3">
+        <form asp-action="Create">
+            <div class="form-row">
+                <div class="col-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Pais" class="control-label"></label>
+                        <select asp-for="Pais" class="form-control" asp-items="new SelectList(ViewBag.Countries)">
+                        </select>
+                        <span asp-validation-for="Pais" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Estado" class="control-label"></label>
+                        <select asp-for="Estado" class="form-control" asp-items="@(new SelectList(ViewBag.Estados, "Value", "Text"))">
+                        </select>
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="FechaCreacion" class="control-label"></label>
+                        <input asp-for="FechaCreacion" class="form-control" />
+                        <span asp-validation-for="FechaCreacion" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-warning my-2" asp-action="Index"><i class="fas fa-arrow-circle-left"></i> Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

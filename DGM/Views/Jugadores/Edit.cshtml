@@ -1,0 +1,95 @@
+﻿@model DGM.Models.Jugadore
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Jugadore</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12 card p-3">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdJugadores" />
+            <div class="form-row">
+                <div class="col-6">
+                    <div class="form-group ">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="control-label"></label>
+                        <input asp-for="Apellido" class="form-control" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+           <div class="form-row">
+               <div class="col-4">
+                   <div class="form-group">
+                       <label asp-for="FechaNacimiento" class="control-label"></label>
+                       <input asp-for="FechaNacimiento" class="form-control" />
+                       <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                   </div>
+    
+               </div>
+               <div class="col-4">
+                   <div class="form-group">
+                       <label asp-for="Pasaporte" class="control-label"></label>
+                       <input asp-for="Pasaporte" class="form-control" />
+                       <span asp-validation-for="Pasaporte" class="text-danger"></span>
+                   </div>
+               
+               </div>
+               <div class="col-4">
+                   <div class="form-group">
+                       <label asp-for="Direccion" class="control-label"></label>
+                       <input asp-for="Direccion" class="form-control" />
+                       <span asp-validation-for="Direccion" class="text-danger"></span>
+                   </div>
+               </div>
+           </div>
+           <div class="form-row">
+               <div class="col-4">
+                   <div class="form-group">
+                       <label asp-for="Sexo" class="control-label"></label>
+                       <select asp-for="Sexo" class="form-control" asp-items="@(new SelectList(ViewBag.Sexo, "Value", "Text"))">
+                           </select>
+                           <span asp-validation-for="Sexo" class="text-danger"></span>
+                   </div>
+               </div>
+               <div class="col-4">
+                   <div class="form-group">
+                       <label asp-for="IdEquipo" class="control-label"></label>
+                       <select asp-for="IdEquipo" class="form-control" asp-items="ViewBag.IdEquipo"></select>
+                       <span asp-validation-for="IdEquipo" class="text-danger"></span>
+                   </div>
+               </div>
+               <div class="col-4">
+                   <div class="form-group">
+                       <label asp-for="IdEstado" class="control-label"></label>
+                       <select asp-for="IdEstado" class="form-control" asp-items="ViewBag.IdEstado"></select>
+                       <span asp-validation-for="IdEstado" class="text-danger"></span>
+                   </div>
+               </div>
+           </div>
+            <div class="form-group col-12">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-warning my-2" asp-action="Index"><i class="fas fa-arrow-circle-left"></i> Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DGM.Models.Jugadore>
+
+@{
+    ViewData["Title"] = "JugadoresDetails";
+}
+
+<style>
+    .card:hover {
+        cursor: pointer;
+        background: #f1f2f6;
+    }
+</style>
+
+<h1 class="alert alert-info">Condiciones: Equipo: @ViewData["detallesJugador"] & Estado: @ViewData["detallesEstado"]</h1>
+
+
+<form method="get" class="row" asp-action="JugadoresDetails">
+
+    <div class="col-6">
+        <label for="search">Equipo</label>
+        <select class="form-control" value="@ViewData["detallesJugador"]" name="search" asp-items="@(new SelectList(ViewBag.dropdown, "Descripcion", "Descripcion"))">
+        </select>
+    </div>
+    <div class="col-6">
+        <label for="estado">Estado</label>
+        <select class="form-control" value="@ViewData["detallesEstado"]" name="estado" asp-items="@(new SelectList(ViewBag.estDropdown, "Descripcion", "Descripcion"))">
+        </select>
+    </div>
+
+    <div class="col-3">
+
+        <button type="submit" class="btn btn-success mt-3">Search</button>
+
+    </div>
+</form>
+
+<hr/>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-4 mt-1">
+            <a asp-action="Details" asp-route-id="@item.IdJugadores" style="text-decoration: none; color: #000;">
+                <div class="card mb-4">
+                    <div class="card-header text-center">
+                        <h5 class="card-text font-weight-normal font-italic ">@Html.DisplayFor(modelItem => item.IdEquipoNavigation.Nombre)</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.Apellido)</h5>
+                        <p class="card-text font-weight-light mb-2">@Html.DisplayFor(modelItem => item.Pasaporte)</p>
+                        <p class="card-text font-weight-light mb-2">@Html.DisplayFor(modelItem => item.IdEstadoNavigation.Descripion)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
